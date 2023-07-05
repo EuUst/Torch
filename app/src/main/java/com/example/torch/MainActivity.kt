@@ -29,28 +29,23 @@ class MainActivity : AppCompatActivity() {
         }
 
         toggleBtn.setOnClickListener {
-            if(toggleBtn.isChecked) {
-                try {
-                    cameraManager.setTorchMode(cameraID,true)
-                    Toast.makeText(this@MainActivity, "Turned on mtfcker!", Toast.LENGTH_LONG)
-                        .show()
-                    torchStatusTV.text = "Torch on"
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            } else {
-                try {
-                    cameraManager.setTorchMode(cameraID, false)
-                    Toast.makeText(
-                        this@MainActivity,
-                        "Torch turned of mthfckr (((",
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
-                    torchStatusTV.text = "Torch off"
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
+            onTorchToggled()
+        }
+    }
+
+    private fun onTorchToggled() {
+        if (toggleBtn.isChecked) {
+            try {
+                cameraManager.setTorchMode(cameraID, true)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+        else {
+            try {
+                cameraManager.setTorchMode(cameraID, false)
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }
